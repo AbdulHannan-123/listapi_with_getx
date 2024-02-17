@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 import '../controllers/sharedprefcontrioller.dart';
+import 'favoritepage.dart';
 
 
 class MyHomePage extends StatelessWidget {
@@ -20,7 +21,9 @@ class MyHomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.favorite),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => FetchTemperaturesScreen(),));
+            },
           ),
         ],
       ),

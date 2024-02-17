@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../controllers/sharedprefcontrioller.dart';
 import 'favoritepage.dart';
+import 'viewdetailpage.dart';
 
 
 class MyHomePage extends StatelessWidget {
@@ -34,7 +35,7 @@ class MyHomePage extends StatelessWidget {
               onChanged: (value) {
                 productController.search(value);
               },
-              decoration: InputDecoration(
+              decoration:const InputDecoration(
                 hintText: 'Search...',
               ),
             ),
@@ -61,7 +62,7 @@ class MyHomePage extends StatelessWidget {
                       }
                       return GestureDetector(
                         onTap: () {
-                          // Handle product tap
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => ViewDetailPage(temperature: product, isFavorite: product.isFavorite.value ),));
                         },
                         child: Card(
                           elevation: 2,

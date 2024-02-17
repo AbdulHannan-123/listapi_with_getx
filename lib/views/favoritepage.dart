@@ -10,7 +10,7 @@ class FetchTemperaturesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fetch Temperatures'),
+        title: const Text('Favorites'),
       ),
       body: SafeArea(
         child: Padding(
@@ -22,14 +22,14 @@ class FetchTemperaturesScreen extends StatelessWidget {
                 onPressed: () {
                   temperaturesController.fetchTemperatures();
                 },
-                child: Text('Fetch Temperatures'),
+                child:const Text('Refresh'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Expanded(
                 child: Obx(
                   () {
                     if (temperaturesController.temperatureList.isEmpty) {
-                      return Center(child: Text('No Temperatures'));
+                      return const Center(child: Text('No Temperatures'));
                     } else {
                       return ListView.builder(
                         itemCount: temperaturesController.temperatureList.length,

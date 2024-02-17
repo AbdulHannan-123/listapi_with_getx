@@ -1,7 +1,6 @@
 import 'package:api_calling_getx/controllers/homecontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 
 import '../controllers/sharedprefcontrioller.dart';
 import 'favoritepage.dart';
@@ -17,10 +16,10 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Spoonacular"),
+        title:const Text("Spoonacular"),
         actions: [
           IconButton(
-            icon: Icon(Icons.favorite),
+            icon:const Icon(Icons.favorite),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => FetchTemperaturesScreen(),));
             },
@@ -32,12 +31,12 @@ class MyHomePage extends StatelessWidget {
         child: Obx(
           () {
             if (productController.isLoading.value) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else {
               return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -45,6 +44,12 @@ class MyHomePage extends StatelessWidget {
                 itemCount: productController.productList.length,
                 itemBuilder: (context, index) {
                   var product = productController.productList[index];
+                  final indexinlist = itemController.temperatureList.indexWhere((t) => t.id == productController.productList[index].id);
+                  if (indexinlist != -1) {
+                    product.isFavorite.value = true;
+                  //   await _prefsService.removeTemperature(index);
+                  //   temperatureList.removeAt(index);
+                  }
                   return GestureDetector(
                     onTap: () {
                       // Handle product tap
@@ -77,10 +82,9 @@ class MyHomePage extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: IconButton(
                           icon:
-                           product.isFavorite.value
-                              ? Icon(Icons.favorite_rounded)
-                              : 
-                              Icon(Icons.favorite_border),
+                           product.isFavorite.value 
+                              ?const Icon(Icons.favorite_rounded)
+                              :const Icon(Icons.favorite_border),
                           onPressed: () {
                             product.isFavorite.toggle();
                             product.isFavorite.value
@@ -93,22 +97,22 @@ class MyHomePage extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
                             Text(
                               product.name ?? "",
                               maxLines: 2,
-                              style: TextStyle(
+                              style:const TextStyle(
                                 fontFamily: 'avenir',
                                 fontWeight: FontWeight.w800,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               product.original ?? "",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style:const TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'avenir',
                               ),

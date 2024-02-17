@@ -17,7 +17,7 @@ class HomeController extends GetxController{
     try {
       isLoading(true);
       var products = await RemoteServices.fetchProducts();
-      if (products != null) {
+      if (products.isNotEmpty) {
         productList.value = products;
       }
     } finally {

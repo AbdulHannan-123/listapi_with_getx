@@ -1,5 +1,7 @@
 import 'package:api_calling_getx/views/homapage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'repositoried/sharedpreference_service.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home:  MyHomePage(),
+      initialBinding: BindingsBuilder(() {
+        Get.lazyPut<SharedPreferencesService>(() => SharedPreferencesService());
+      }),
     );
   }
 }

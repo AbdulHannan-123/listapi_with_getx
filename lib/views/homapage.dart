@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
+import '../controllers/sharedprefcontrioller.dart';
+
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final HomeController productController = Get.put(HomeController());
+  final TemperaturesController itemController = Get.put(TemperaturesController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +56,8 @@ class MyHomePage extends StatelessWidget {
                              Stack(
               children: [
                 Container(
-                  height: 10,
-                  width: 10,
+                  height: 60,
+                  width: double.infinity,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
@@ -65,18 +68,22 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                
-                Positioned(
+                  Positioned(
                   right: 0,
                   child: Obx(() => CircleAvatar(
                         backgroundColor: Colors.white,
                         child: IconButton(
                           icon:
-                          //  product.isFavorite
-                          //     ? Icon(Icons.favorite_rounded)
-                          //     : 
+                           product.isFavorite.value
+                              ? Icon(Icons.favorite_rounded)
+                              : 
                               Icon(Icons.favorite_border),
                           onPressed: () {
-                            // product.isFavorite.toggle();
+                            product.isFavorite.toggle();
+                            product.isFavorite.value
+                            ?itemController.saveTemperature(product)
+                            :itemController.removeTemperature(product);
+
                           },
                         ),
                       )),
@@ -96,7 +103,8 @@ class MyHomePage extends StatelessWidget {
                             SizedBox(height: 8),
                             Text(
                               product.original ?? "",
-                              maxLines: 2,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'avenir',

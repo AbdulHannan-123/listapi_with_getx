@@ -1,3 +1,5 @@
+import 'package:get/state_manager.dart';
+
 class Temperatures {
   String? name;
   int? id;
@@ -6,6 +8,8 @@ class Temperatures {
   String? image;
 
   Temperatures({this.name, this.id, this.consistency, this.original, this.image});
+
+  var isFavorite = false.obs;
 
   Temperatures.fromJson(Map<String, dynamic> json) {
     name = json['name'];

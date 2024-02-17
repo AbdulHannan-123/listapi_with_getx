@@ -13,7 +13,7 @@ class Temperatures {
 
   Temperatures.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    image = json['image'];
+    image ='https://spoonacular.com/recipeImages/' + json['image'];
     id = json['id'];
     consistency = json['consistency'];
     original = json['original'];

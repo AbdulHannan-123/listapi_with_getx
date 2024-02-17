@@ -71,9 +71,13 @@ class ViewDetailPage extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             // Display image if available, else display placeholder
-            temperature.image != null
-                ? Image.network(temperature.image!)
+            Container(
+              height: 100,
+              width: double.infinity,
+              child: temperature.image != null
+                ? Image.network(temperature.image!,fit: BoxFit.fill,)
                 : const Placeholder(fallbackHeight: 200, fallbackWidth: 200),
+            )
           ],
         ),
       ),

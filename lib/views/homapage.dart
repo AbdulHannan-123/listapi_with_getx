@@ -100,7 +100,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 8),
                             Text(
                               product.name ?? "",
-                              maxLines: 2,
+                              maxLines: 1,
                               style:const TextStyle(
                                 fontFamily: 'avenir',
                                 fontWeight: FontWeight.w800,
